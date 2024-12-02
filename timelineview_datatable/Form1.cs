@@ -24,12 +24,18 @@ namespace timelineview_datatable
         {
             MakeSampleData();
             MakeResourceData();
+            InitResources();
             InitScheduler();
             BindResources();
             BindScheduler();
 
         }
-        
+
+        private void InitResources()
+        {
+            resourcesTree1.OptionsView.ShowAutoFilterRow = true;
+        }
+
         /// <summary>
         /// Resources 정보를 바인딩
         /// </summary>
