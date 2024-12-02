@@ -64,7 +64,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(316, 622);
+            this.gridControl1.Size = new System.Drawing.Size(1224, 337);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -77,6 +77,7 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
             // 
@@ -89,8 +90,8 @@
             // 
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(737, 622);
-            this.splitContainerControl1.SplitterPosition = 316;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1224, 622);
+            this.splitContainerControl1.SplitterPosition = 337;
             this.splitContainerControl1.TabIndex = 1;
             // 
             // splitContainerControl2
@@ -108,8 +109,8 @@
             // 
             this.splitContainerControl2.Panel2.Controls.Add(this.schedulerControl1);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(411, 622);
-            this.splitContainerControl2.SplitterPosition = 179;
+            this.splitContainerControl2.Size = new System.Drawing.Size(1224, 275);
+            this.splitContainerControl2.SplitterPosition = 225;
             this.splitContainerControl2.TabIndex = 0;
             // 
             // resourcesTree1
@@ -119,7 +120,7 @@
             this.resourcesTree1.Name = "resourcesTree1";
             this.resourcesTree1.OptionsBehavior.Editable = false;
             this.resourcesTree1.SchedulerControl = this.schedulerControl1;
-            this.resourcesTree1.Size = new System.Drawing.Size(179, 622);
+            this.resourcesTree1.Size = new System.Drawing.Size(225, 275);
             this.resourcesTree1.TabIndex = 0;
             // 
             // schedulerControl1
@@ -128,7 +129,7 @@
             this.schedulerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.schedulerControl1.Location = new System.Drawing.Point(0, 0);
             this.schedulerControl1.Name = "schedulerControl1";
-            this.schedulerControl1.Size = new System.Drawing.Size(222, 622);
+            this.schedulerControl1.Size = new System.Drawing.Size(989, 275);
             this.schedulerControl1.Start = new System.DateTime(2024, 12, 2, 0, 0, 0, 0);
             this.schedulerControl1.TabIndex = 0;
             this.schedulerControl1.Text = "schedulerControl1";
@@ -164,11 +165,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 622);
+            this.ClientSize = new System.Drawing.Size(1224, 622);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
