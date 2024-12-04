@@ -15,6 +15,7 @@ namespace timelineview_datatable
     {
         DataTable sample_dt;
         DataTable resrc_dt;
+        DataTable todo_dt;
         public Form1()
         {
             InitializeComponent();
@@ -24,11 +25,30 @@ namespace timelineview_datatable
         {
             MakeSampleData();
             MakeResourceData();
+            MakeTodoData();
             InitResources();
             InitScheduler();
             BindResources();
             BindScheduler();
 
+        }
+
+        private void MakeTodoData()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("work_no"); 
+            dt.Columns.Add("work_nm");
+            dt.Columns.Add("subject");
+            dt.Columns.Add("remark");
+            dt.Columns.Add("worker");
+            dt.Columns.Add("spend_time");
+
+            dt.Rows.Add("W100", "작업1번", "물끓이기", "물양 잘맞춰야함", "득구",TimeSpan.FromDays(2));
+            dt.Rows.Add("W101", "작업2번", "스프넣기", "아 매콤하다", "길동", TimeSpan.FromDays(1));
+            dt.Rows.Add("W102", "작업3번", "면 넣기", "아 쫄깃하다", "한둑", TimeSpan.FromDays(4));
+            dt.Rows.Add("W103", "작업4번", "먹기!", "아 맛있다", "길구", TimeSpan.FromDays(5));
+
+            gridControl1.DataSource = dt;
         }
 
         private void MakeResourceData()
