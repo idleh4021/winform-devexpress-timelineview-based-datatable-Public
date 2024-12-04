@@ -39,6 +39,11 @@
             this.resourcesTree1 = new DevExpress.XtraScheduler.UI.ResourcesTree();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
             this.schedulerDataStorage1 = new DevExpress.XtraScheduler.SchedulerDataStorage(this.components);
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -56,15 +61,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.resourcesTree1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataStorage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3.Panel1)).BeginInit();
+            this.splitContainerControl3.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3.Panel2)).BeginInit();
+            this.splitContainerControl3.Panel2.SuspendLayout();
+            this.splitContainerControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.Location = new System.Drawing.Point(2, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1224, 337);
+            this.gridControl1.Size = new System.Drawing.Size(1220, 312);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -83,7 +100,7 @@
             // 
             // splitContainerControl1.Panel1
             // 
-            this.splitContainerControl1.Panel1.Controls.Add(this.gridControl1);
+            this.splitContainerControl1.Panel1.Controls.Add(this.groupControl2);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             // 
             // splitContainerControl1.Panel2
@@ -107,7 +124,7 @@
             // 
             // splitContainerControl2.Panel2
             // 
-            this.splitContainerControl2.Panel2.Controls.Add(this.schedulerControl1);
+            this.splitContainerControl2.Panel2.Controls.Add(this.splitContainerControl3);
             this.splitContainerControl2.Panel2.Text = "Panel2";
             this.splitContainerControl2.Size = new System.Drawing.Size(1224, 275);
             this.splitContainerControl2.SplitterPosition = 225;
@@ -129,7 +146,7 @@
             this.schedulerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.schedulerControl1.Location = new System.Drawing.Point(0, 0);
             this.schedulerControl1.Name = "schedulerControl1";
-            this.schedulerControl1.Size = new System.Drawing.Size(989, 275);
+            this.schedulerControl1.Size = new System.Drawing.Size(702, 275);
             this.schedulerControl1.Start = new System.DateTime(2024, 12, 2, 0, 0, 0, 0);
             this.schedulerControl1.TabIndex = 0;
             this.schedulerControl1.Text = "schedulerControl1";
@@ -161,6 +178,61 @@
             this.schedulerDataStorage1.Appointments.Labels.CreateNewLabel(9, "Anniversary", "&Anniversary", System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(233)))), ((int)(((byte)(223))))));
             this.schedulerDataStorage1.Appointments.Labels.CreateNewLabel(10, "Phone Call", "Phone &Call", System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(247)))), ((int)(((byte)(165))))));
             // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.gridControl2);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(277, 275);
+            this.groupControl1.TabIndex = 1;
+            this.groupControl1.Text = "Schedulercontrol DataSource";
+            // 
+            // splitContainerControl3
+            // 
+            this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl3.Name = "splitContainerControl3";
+            // 
+            // splitContainerControl3.Panel1
+            // 
+            this.splitContainerControl3.Panel1.Controls.Add(this.schedulerControl1);
+            this.splitContainerControl3.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl3.Panel2
+            // 
+            this.splitContainerControl3.Panel2.Controls.Add(this.groupControl1);
+            this.splitContainerControl3.Panel2.Text = "Panel2";
+            this.splitContainerControl3.Size = new System.Drawing.Size(989, 275);
+            this.splitContainerControl3.SplitterPosition = 702;
+            this.splitContainerControl3.TabIndex = 2;
+            // 
+            // gridControl2
+            // 
+            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl2.Location = new System.Drawing.Point(2, 23);
+            this.gridControl2.MainView = this.gridView2;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(273, 250);
+            this.gridControl2.TabIndex = 0;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.gridControl2;
+            this.gridView2.Name = "gridView2";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.gridControl1);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(1224, 337);
+            this.groupControl2.TabIndex = 1;
+            this.groupControl2.Text = "Todo list";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -188,6 +260,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.resourcesTree1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataStorage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3.Panel1)).EndInit();
+            this.splitContainerControl3.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3.Panel2)).EndInit();
+            this.splitContainerControl3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
+            this.splitContainerControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -201,6 +285,11 @@
         private DevExpress.XtraScheduler.UI.ResourcesTree resourcesTree1;
         private DevExpress.XtraScheduler.SchedulerControl schedulerControl1;
         private DevExpress.XtraScheduler.SchedulerDataStorage schedulerDataStorage1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
     }
 }
 

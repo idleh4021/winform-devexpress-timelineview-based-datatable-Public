@@ -31,6 +31,18 @@ namespace timelineview_datatable
 
         }
 
+        private void MakeResourceData()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("machine_no"); //resource
+            dt.Columns.Add("machine_nm"); //resource
+            dt.Rows.Add("M001", "Machine A");
+            dt.Rows.Add("M002", "Machine B");
+            dt.Rows.Add("M003", "Machine C");
+            resrc_dt = dt;
+
+        }
+
         private void InitResources()
         {
             resourcesTree1.OptionsView.ShowAutoFilterRow = true;
@@ -79,10 +91,11 @@ namespace timelineview_datatable
         }
 
         /// <summary>
-        /// Appointment를 그룹화 하기위한 Resources 데이터 생성
+        /// Appointment를 그룹화 하기위한 Resources 데이터 생성 (스케줄 데이터 기반으로 그룹바이)
         /// </summary>
-        private void MakeResourceData()
+        private void MakeResourceDataBasedOnScheduleData()
         {
+            //스케줄 데이터 기반으로 그룹바이 하기때문에, 스케줄데이터에 없는 정보는 표기되지 않게됨.
             DataTable dt = new DataTable();
             dt.Columns.Add("machine_no");
             dt.Columns.Add("machine_nm");
@@ -135,7 +148,7 @@ namespace timelineview_datatable
             apt_dt.Rows.Add("M003", "Machine C", "W009", "Work Iota", DateTime.Now.AddHours(8), DateTime.Now.AddHours(10), "Task I", "Remark 9", "Worker 3");
             apt_dt.Rows.Add("M001", "Machine A", "W010", "Work Kappa", DateTime.Now.AddHours(9), DateTime.Now.AddHours(11), "Task J", "Remark 10", "Worker 1");
             sample_dt = apt_dt;
-            gridControl1.DataSource = sample_dt;
+            gridControl2.DataSource = sample_dt;
 
         }
 
