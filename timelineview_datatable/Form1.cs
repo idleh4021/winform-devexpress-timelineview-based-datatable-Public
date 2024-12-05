@@ -238,6 +238,7 @@ namespace timelineview_datatable
             {
                 e.Allow = false;
             }
+            schedulerControl1.SelectedAppointments.Clear();//드래그앤드랍이후 계속 선택되어있음.
         }
 
         SchedulerDragData GetDragData(GridView view)
