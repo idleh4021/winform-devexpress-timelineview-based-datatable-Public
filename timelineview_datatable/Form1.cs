@@ -1,4 +1,7 @@
-﻿using DevExpress.XtraScheduler;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraScheduler;
 using DevExpress.XtraTreeList.Columns;
 using System;
 using System.Collections.Generic;
@@ -23,6 +26,8 @@ namespace timelineview_datatable
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //splitContainerControl3.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel1;
+            splitContainerControl3.Panel1.MinSize = 1000;
             MakeSampleData();
             MakeResourceData();
             MakeTodoData();
@@ -30,7 +35,8 @@ namespace timelineview_datatable
             InitScheduler();
             BindResources();
             BindScheduler();
-
+            gridView1.OptionsBehavior.Editable = false;
+           
         }
 
         private void MakeTodoData()
@@ -43,10 +49,10 @@ namespace timelineview_datatable
             dt.Columns.Add("worker");
             dt.Columns.Add("spend_time");
 
-            dt.Rows.Add("W100", "작업1번", "물끓이기", "물양 잘맞춰야함", "득구",TimeSpan.FromDays(2));
-            dt.Rows.Add("W101", "작업2번", "스프넣기", "아 매콤하다", "길동", TimeSpan.FromDays(1));
-            dt.Rows.Add("W102", "작업3번", "면 넣기", "아 쫄깃하다", "한둑", TimeSpan.FromDays(4));
-            dt.Rows.Add("W103", "작업4번", "먹기!", "아 맛있다", "길구", TimeSpan.FromDays(5));
+            dt.Rows.Add("W100", "작업1번", "물끓이기", "물양 잘맞춰야함", "득구",TimeSpan.FromDays(2).Days);
+            dt.Rows.Add("W101", "작업2번", "스프넣기", "아 매콤하다", "길동", TimeSpan.FromDays(1).Days);
+            dt.Rows.Add("W102", "작업3번", "면 넣기", "아 쫄깃하다", "한둑", TimeSpan.FromDays(4).Days);
+            dt.Rows.Add("W103", "작업4번", "먹기!", "아 맛있다", "길구", TimeSpan.FromDays(5).Days);
 
             gridControl1.DataSource = dt;
         }
@@ -106,6 +112,8 @@ namespace timelineview_datatable
             ds.Appointments.Mappings.End = "end_date";
             ds.Appointments.Mappings.Subject = "Subject";
             ds.Appointments.Mappings.Description = "remark";
+            ds.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("worker", "worker"));
+            ds.Appointments.CustomFieldMappings.Add(new AppointmentCustomFieldMapping("work_no", "work_no"));
 
             ds.Appointments.Mappings.ResourceId = "machine_no";
         }
@@ -181,5 +189,87 @@ namespace timelineview_datatable
             schedulerControl1.GroupType = SchedulerGroupType.Resource;
 
         }
+
+
+        #region gridcontrol DragDrop
+        GridHitInfo DownHitInfo { get; set; }
+
+        void GridViewTasksMouseDown(object sender, MouseEventArgs e)
+        {
+            GridView view = sender as GridView;
+            this.DownHitInfo = null;
+
+            GridHitInfo hitInfo = view.CalcHitInfo(new Point(e.X, e.Y));
+            if (Control.ModifierKeys != Keys.None)
+                return;
+            if (e.Button == MouseButtons.Left && hitInfo.InRow && hitInfo.HitTest != GridHitTest.RowIndicator)
+                this.DownHitInfo = hitInfo;
+        }
+
+        void GridViewTasksMouseMove(object sender, MouseEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.Button == MouseButtons.Left && this.DownHitInfo != null)
+            {
+                Size dragSize = SystemInformation.DragSize;
+                Rectangle dragRect = new Rectangle(new Point(this.DownHitInfo.HitPoint.X - dragSize.Width / 2,
+                    this.DownHitInfo.HitPoint.Y - dragSize.Height / 2), dragSize);
+
+                if (!dragRect.Contains(new Point(e.X, e.Y)))
+                {
+                    view.GridControl.DoDragDrop(GetDragData(view), DragDropEffects.All);
+                    this.DownHitInfo = null;
+                }
+            }
+        }
+
+        void SchedulerControlAppointmentDrop(object sender, AppointmentDragEventArgs e)
+        {
+            string createEventMsg = "Creating an event at {0} on {1}.";
+            string moveEventMsg = "Moving the event from {0} on {1} to {2} on {3}.";
+
+            DateTime srcStart = e.SourceAppointment.Start;
+            DateTime newStart = e.EditedAppointment.Start;
+
+            string msg = (srcStart == DateTime.MinValue) ? String.Format(createEventMsg, newStart.ToShortTimeString(), newStart.ToShortDateString()) :
+                String.Format(moveEventMsg, srcStart.ToShortTimeString(), srcStart.ToShortDateString(), newStart.ToShortTimeString(), newStart.ToShortDateString());
+
+            if (XtraMessageBox.Show(msg + "\r\nProceed?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Allow = false;
+            }
+        }
+
+        SchedulerDragData GetDragData(GridView view)
+        {
+            int[] selection = view.GetSelectedRows();
+            if (selection == null)
+                return null;
+
+            AppointmentBaseCollection appointments = new AppointmentBaseCollection();
+            int count = selection.Length;
+            for (int i = 0; i < count; i++)
+            {
+                int rowIndex = selection[i];
+                Appointment apt = schedulerControl1.DataStorage.CreateAppointment(AppointmentType.Normal);
+                apt.Subject = (string)view.GetRowCellValue(rowIndex, "subject");
+                //apt.ResourceId = (string)view.GetRowCellValue(rowIndex, "MAC_CD");
+                //apt.LabelKey = (int)view.GetRowCellValue(rowIndex, "Severity");
+                //apt.StatusKey = (int)view.GetRowCellValue(rowIndex, "Priority");
+                apt.Start = DateTime.Now;
+                //apt.Duration = TimeSpan.FromDays( Convert.ToDouble(view.GetRowCellValue(rowIndex, "spend_time")));
+                apt.Duration = TimeSpan.FromDays(Convert.ToDouble(view.GetRowCellValue(rowIndex, "spend_time")));
+                //apt.Duration = TimeSpan.FromHours((int)view.GetRowCellValue(rowIndex, "Duration"));
+                apt.Description = (string)view.GetRowCellValue(rowIndex, "remark");
+                apt.CustomFields["worker"] = (string)view.GetRowCellValue(rowIndex, "worker");
+                apt.CustomFields["work_no"] = (string)view.GetRowCellValue(rowIndex, "work_no");
+                appointments.Add(apt);
+
+            }
+
+            return new SchedulerDragData(appointments, 0);
+        }
+        #endregion gridcontrol DragDrop
+
     }
 }
